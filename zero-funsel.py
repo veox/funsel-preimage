@@ -6,7 +6,10 @@ import argparse
 
 import web3
 
-argtypes = ['uint256', 'uint64', 'uint32', 'uint8', 'bool', 'bytes32', 'bytes', 'string']
+argtypes = ['uint256', 'uint128', 'uint64', 'uint32', 'uint16', 'uint8',
+            'int256', 'int128', 'int64', 'int32', 'int16', 'int8',
+            'bytes32', 'bytes16','bytes8', 'bytes4', 'bytes1', 'bytes',
+            'bool', 'string']
 
 parser = argparse.ArgumentParser()
 parser.add_argument('-a', '--nargs', type=int, default=1,
