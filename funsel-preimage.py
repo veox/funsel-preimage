@@ -12,6 +12,8 @@ argtypes = ['uint256', 'uint128', 'uint64', 'uint32', 'uint16', 'uint8',
             'bool', 'string']
 
 parser = argparse.ArgumentParser()
+parser.add_argument('-t', '--target', type=str, default='0x00000000',
+                    help='function selector to search for')
 parser.add_argument('-a', '--nargs', type=int, default=1,
                     help='number of function arguments')
 parser.add_argument('-f', '--dictfile', type=str, default=None,
@@ -25,6 +27,7 @@ conf = parser.parse_args()
 if not conf.maxwords: conf.maxwords = conf.minwords
 
 filenameshort = conf.dictfile[:8]
+targetshort = conf.target[:-2]
 
 # words' list for function name body
 with open(conf.dictfile) as fd:
@@ -44,6 +47,6 @@ for nwords in range(conf.minwords, conf.maxwords+1):
             funsel = web3.Web3.toHex(web3.Web3.sha3(text=funsig)[:4])
 
             # print close-enoughs
-            if funsel.startswith('0x000000'): print(funsel, funsig)
+            if funsel.startswith(targetshort): print(funsel, funsig)
             # print match
-            if funsel == '0x00000000': print('>>>>>> FOUND!', funsel, funsig)
+            if funsel == conf.target: print('>>>>>> FOUND!', funsel, funsig)
