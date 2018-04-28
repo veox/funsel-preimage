@@ -1,8 +1,9 @@
 #!/usr/bin/env python
 # mutatis mutandis
 
-import itertools
 import argparse
+import itertools
+from os.path import basename
 
 import web3
 
@@ -26,7 +27,7 @@ conf = parser.parse_args()
 
 if not conf.maxwords: conf.maxwords = conf.minwords
 
-filenameshort = conf.dictfile[:8]
+filenameshort = basename(conf.dictfile)[:8]
 targetshort = conf.target[:-2]
 
 # words' list for function name body
