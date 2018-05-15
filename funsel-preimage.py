@@ -22,6 +22,8 @@ def load_dictionary(filename: str) -> list:
 def run(conf):
     # words' list for function name body
     words = load_dictionary(conf.dictfile)
+    # TODO: allow "rotating" the word list, so generator starts with different letter
+    # words = rotate_list(words, startletter=conf.startletter)
     # used in print()
     filenameshort = basename(conf.dictfile)[:8]
     targetshort = conf.target[:-2]
